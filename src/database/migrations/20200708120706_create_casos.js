@@ -9,7 +9,9 @@ exports.up = function(knex) {
         table.string('hora_ocorrido').notNullable();
 
         table.integer("local_id").notNullable();
+        table.integer("medico_id").notNullable();
 
+        table.foreign('medico_id').references('id').inTable('medicos');
         table.foreign("local_id").references('id').inTable('locais');
     });
 };

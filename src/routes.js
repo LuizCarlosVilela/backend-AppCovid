@@ -1,29 +1,18 @@
+const connection = require('./database/connection');
+
 const express = require('express');
 const routes = express.Router();
 
-const connection = require('./database/connection');
+const MedicoController = require('./controllers/MedicoController');
+const CasoController = require('./controllers//CasoController');
+const LocalController = require('./controllers/LocalController');
 
-routes.post('/create_local', async (request, response) => {
-    const { rua, bairro, cidade, uf, latitude, longitude } = request.body;
-    console.log(rua);
+routes.post('/create_caso', CasoController.create);
 
-    const id = await connection('locais').insert({
-        rua,
-        bairro,
-        cidade,
-        uf,
-        latitude,
-        longitude
-    });
+//Medicos
+routes.post('/create_medico', MedicoController.create);
+routes.get('/medicos', MedicoController.select);
 
-    console.log(id);
-    
-    return response.json({ msg: "ok"});
-});
+routes.get('/locais', LocalController.select);
 
-routes.get('/locais', async (request, response) => {
-    const query = await connection.queryBuilder().select('*').from('locais');
-
-    response.json(query);
-})
 module.exports = routes;
