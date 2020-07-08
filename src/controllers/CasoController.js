@@ -1,5 +1,6 @@
 const { create, select } = require("./MedicoController");
 const connection = require('../database/connection');
+const { connect } = require("../routes");
 
 module.exports = {
     async create(request, response) {
@@ -41,6 +42,12 @@ module.exports = {
     async select(request, response) {
 
         const casos = await connection('casos').select('*');
+
+        //const newCasos = await casos.map( async (caso) => {
+            //const { local_id } = caso;
+
+            //const local = await connection('locais').where('id', local_id).select('*');
+        //})
 
         response.json(casos);
     }
