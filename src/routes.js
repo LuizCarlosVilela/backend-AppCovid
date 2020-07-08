@@ -11,12 +11,15 @@ routes.get('/', (request, response) => {
     return response.send('Vá para a rota /casos para ver os casos');
 });
 
+//Casos
 routes.post('/create_caso', CasoController.create);
+routes.get('/casos', CasoController.select);
 
 //Medicos
 routes.post('/create_medico', MedicoController.create);
 routes.get('/medicos', MedicoController.select);
 
+//Local
 routes.get('/locais', LocalController.select);
 
 module.exports = routes;

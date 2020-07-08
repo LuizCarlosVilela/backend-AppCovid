@@ -1,4 +1,4 @@
-const { create } = require("./MedicoController");
+const { create, select } = require("./MedicoController");
 const connection = require('../database/connection');
 
 module.exports = {
@@ -37,6 +37,11 @@ module.exports = {
         console.log("Caso ID "+ idCaso);
 
         response.json({ msg: "ok"})
+    },
+    async select(request, response) {
 
+        const casos = await connection('casos').select('*');
+
+        response.json(casos);
     }
 }
