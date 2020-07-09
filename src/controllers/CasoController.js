@@ -11,7 +11,7 @@ module.exports = {
         const { rua, bairro, cidade, uf, latitude, longitude } = request.body;
 
 
-        const [ local_id ] = await connection('locais').insert({
+        const [local_id] = await connection('locais').insert({
             rua,
             bairro,
             cidade,
@@ -20,14 +20,14 @@ module.exports = {
             longitude
         });
 
-        console.log("Local "+local_id);
+        console.log("Local " + local_id);
 
-        const [ queryId ] = await connection('medicos').where({ crm: crm, senha: senha }).select("id");
+        const [queryId] = await connection('medicos').where({ crm: crm, senha: senha }).select("id");
         let medico_id = await queryId.id;
 
-        console.log("Id médico "+medico_id);
+        console.log("Id médico " + medico_id);
 
-        const [ idCaso ] = await connection('casos').insert({
+        const [idCaso] = await connection('casos').insert({
             nome_paciente,
             data_ocorrido,
             hora_ocorrido,
@@ -35,20 +35,31 @@ module.exports = {
             medico_id
         });
 
-        console.log("Caso ID "+ idCaso);
+        console.log("Caso ID " + idCaso);
 
-        response.json({ msg: "ok"})
+        response.json({ msg: "ok" })
     },
     async select(request, response) {
 
         const casos = await connection('casos').select('*');
 
-        //const newCasos = await casos.map( async (caso) => {
-            //const { local_id } = caso;
+        casos.forEach(async (caso, index) => {
+            const { local_id } = caso;
+            const [ local ] = await connection('locais').where('id', local_id).select('*');
 
-            //const local = await connection('locais').where('id', local_id).select('*');
-        //})
+            var newC = {
+                nome_paciente: caso.nome_paciente,
+                data_ocorrido: caso.data_ocorrido,
+                hora_ocorrido: caso.hora_ocorrido,
+                local,
+                medico_id: caso.medico_id
+            }
+            console.log("Index" + index);
+            casos[index] = newC;
+        });
 
-        response.json(casos);
+        setTimeout( ()=> {
+            response.json(casos);
+        }, 5000)
     }
 }
