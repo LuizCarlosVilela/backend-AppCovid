@@ -19,9 +19,13 @@ module.exports = {
             nomeCompleto
         });
 
+        const doctor = await connection('medicos').where({ crm: crm}).select('*');
+
         const token = generateToken({ id: id })
 
-        return response.json({ token, id });
+        doctor[0].senha = undefined;
+
+        return response.json({ token, doctor });
     },
 
     async login(request, response) {
