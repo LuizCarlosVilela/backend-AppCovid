@@ -13,6 +13,9 @@ routes.get('/', (request, response) => {
     return response.send('Vá para a rota /casos para ver os casos');
 });
 
+//Login
+routes.post('/login', MedicoController.login);
+
 //Casos
 routes.post('/create_caso', authMiddleware, CasoController.create);
 routes.get('/casos', CasoController.select);

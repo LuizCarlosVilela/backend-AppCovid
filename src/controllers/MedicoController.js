@@ -23,6 +23,29 @@ module.exports = {
 
         return response.json({ token, id });
     },
+
+    async login(request, response) {
+        const { crm, senha } = request.body;
+
+        const doctor = await connection('medicos').where({ crm: crm}).select('*');
+
+        if (doctor < 1) return response.status(401).send
+        ('Falha na autenticação');
+
+        const compare = bcrypt.compareSync(senha, doctor[0].senha);
+
+        if (!compare) return response.status(401).send('Falha na autenticação');
+
+        doctor[0].senha = undefined;
+
+        const token = generateToken({ id: doctor[0].id });
+
+        response.json({
+            token,
+            doctor
+        })
+    },
+
     async select(request, response) {
         const query = await connection('medicos').select('*');
         return response.json(query);
