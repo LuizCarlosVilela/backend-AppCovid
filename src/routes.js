@@ -7,12 +7,14 @@ const MedicoController = require('./controllers/MedicoController');
 const CasoController = require('./controllers//CasoController');
 const LocalController = require('./controllers/LocalController');
 
+const authMiddleware = require('./auth');
+
 routes.get('/', (request, response) => {
     return response.send('Vá para a rota /casos para ver os casos');
 });
 
 //Casos
-routes.post('/create_caso', CasoController.create);
+routes.post('/create_caso', authMiddleware, CasoController.create);
 routes.get('/casos', CasoController.select);
 
 //Medicos
