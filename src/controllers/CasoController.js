@@ -4,7 +4,7 @@ const { connect } = require("../routes");
 
 module.exports = {
     async create(request, response) {
-        const { crm, senha } = request.body;
+        const { id } = request.body;
 
         const { nome_paciente, data_ocorrido, hora_ocorrido } = request.body;
 
@@ -22,17 +22,12 @@ module.exports = {
 
         console.log("Local " + local_id);
 
-        const [queryId] = await connection('medicos').where({ crm: crm, senha: senha }).select("id");
-        let medico_id = await queryId.id;
-
-        console.log("Id médico " + medico_id);
-
         const [idCaso] = await connection('casos').insert({
             nome_paciente,
             data_ocorrido,
             hora_ocorrido,
             local_id,
-            medico_id
+            medico_id: id
         });
 
         console.log("Caso ID " + idCaso);
