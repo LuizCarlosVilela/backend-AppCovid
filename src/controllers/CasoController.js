@@ -52,7 +52,6 @@ module.exports = {
                 local,
                 medico_id: caso.medico_id
             }
-            console.log("Index" + index);
             casos[index] = newC;
         });
 
@@ -66,5 +65,35 @@ module.exports = {
         await connection('casos').where('id', id).delete();
 
         response.json({ msg: "Deletado" });
+    },
+
+    async updateCaso(request, response) {
+
+        const { caso_id } = request.body;
+
+        const { local_id } = request.body;
+
+        const { nome_paciente, data_ocorrido, hora_ocorrido } = request.body;
+
+        const { rua, bairro, cidade, uf, latitude, longitude } = request.body;
+
+        await connection('locais').where('id', local_id).update({
+            rua,
+            bairro,
+            cidade,
+            uf,
+            latitude,
+            longitude
+        })
+
+        await connection('casos').where('id', caso_id).update({
+            nome_paciente,
+            data_ocorrido,
+            hora_ocorrido
+        });
+
+
+        response.json({ msg: 'Update feito'} )
+
     }
 }

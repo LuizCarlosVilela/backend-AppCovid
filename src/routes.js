@@ -21,6 +21,7 @@ routes.post('/create_caso', authMiddleware, CasoController.create);
 routes.get('/casos', CasoController.select);
 
 routes.delete('/delete_caso/:id', CasoController.delete);
+routes.put('/update_caso', CasoController.updateCaso);
 
 //Medicos
 routes.post('/create_medico', MedicoController.create);
