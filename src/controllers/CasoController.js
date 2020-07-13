@@ -1,6 +1,7 @@
 const { create, select } = require("./MedicoController");
 const connection = require('../database/connection');
 const { connect } = require("../routes");
+const { update } = require("../database/connection");
 
 module.exports = {
     async create(request, response) {
@@ -58,5 +59,12 @@ module.exports = {
         setTimeout( ()=> {
             response.json(casos);
         }, 3000)
+    },
+    async delete(request, response){
+        const { id } = request.params;
+
+        await connection('casos').where('id', id).delete();
+
+        response.json({ msg: "Deletado" });
     }
 }
