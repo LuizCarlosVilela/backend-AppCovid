@@ -7,7 +7,7 @@ app.use(express.json());
 app.use(routes);
 
 const PORT = process.env.PORT || 8877;
-const DATABASE_URL = process.env.DATABASE_URL || 8877;
+const DATABASE_URL = process.env.DATABASE_URL;
 //Usando para fazer isso  no heroku
 app.listen(PORT, () => {
 
