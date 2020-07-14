@@ -12,6 +12,7 @@ module.exports = {
     },
     useNullAsDefault: "true",
   },
+  
   development1: {
     client: 'pg',
     connection: process.env.DATABASE_URL,
