@@ -2,7 +2,7 @@
 
 module.exports = {
 
-  development: {
+  development1: {
     client: 'sqlite3',
     connection: {
       filename: './src/database/db.sqlite'
@@ -13,7 +13,7 @@ module.exports = {
     useNullAsDefault: "true",
   },
 
-  development1: {
+  development: {
     client: 'pg',
     connection: {
       database: 'db02tove2787qs',
