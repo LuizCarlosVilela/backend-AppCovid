@@ -12,5 +12,5 @@ const DATABASE_URL = process.env.DATABASE_URL || 8877;
 app.listen(PORT, () => {
 
     console.log('Escutando na porta: ' + PORT);
-    console.log("Database: "+ ATABASE_URL);
+    console.log("Database: "+ DATABASE_URL);
 })
