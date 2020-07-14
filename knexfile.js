@@ -21,7 +21,7 @@ module.exports = {
       max: 10
     },
     migrations: {
-      directory: "./src/database/migrations"
+      directory: "app/src/database/migrations"
     },
     useNullAsDefault: "true",
   },
