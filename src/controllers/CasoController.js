@@ -20,17 +20,17 @@ module.exports = {
 
     console.log("Local " + local_id);
 
-    const [idCaso] = await connection("casos").insert({
-      nome_paciente,
-      data_ocorrido,
-      hora_ocorrido,
-      local_id,
-      medico_id: id,
-    });
+    //const [idCaso] = await connection("casos").insert({
+      //nome_paciente,
+      //data_ocorrido,
+      //hora_ocorrido,
+      //local_id,
+      //medico_id: id,
+    //});
 
-    console.log("Caso ID " + idCaso);
+    //console.log("Caso ID " + idCaso);
 
-    response.json({ msg: "ok" });
+    //response.json({ msg: "ok" });
   },
   async select(request, response) {
     const casos = await connection("casos").select("*");
@@ -56,7 +56,7 @@ module.exports = {
       response.json(casos);
     }, 3000);
   },
-  
+
   async delete(request, response) {
     const { id } = request.params;
 
