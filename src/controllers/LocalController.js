@@ -21,7 +21,7 @@ module.exports = {
     async getLocalForLat(request, response){
         const { latitude, longitude } = request.body;
 
-        const query = await connection('locais').where({ latitude, longitude }).select('*');
+        const query = await connection('locais').where({ latitude, longitude }).select('id');
         return response.json(query);
     }
     
