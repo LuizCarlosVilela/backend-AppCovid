@@ -3,9 +3,9 @@ const connection = require("../database/connection");
 
 module.exports = {
   async create(request, response) {
-    const { id } = request.body;
+    //const { id } = request.body;
 
-    const { nome_paciente, data_ocorrido, hora_ocorrido } = request.body;
+    //const { nome_paciente, data_ocorrido, hora_ocorrido } = request.body;
 
     const { rua, bairro, cidade, uf, latitude, longitude } = request.body;
 
