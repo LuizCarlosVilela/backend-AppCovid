@@ -24,7 +24,7 @@ module.exports = {
       nome_paciente,
       data_ocorrido,
       hora_ocorrido,
-      local_id: 1,
+      local_id: local_id.id,
       medico_id: id
     });
 
