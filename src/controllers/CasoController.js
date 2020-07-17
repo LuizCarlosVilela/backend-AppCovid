@@ -54,7 +54,7 @@ module.exports = {
 
     setTimeout(() => {
       response.json(casos);
-    }, 3000);
+    }, 2000);
   },
 
   async delete(request, response) {
