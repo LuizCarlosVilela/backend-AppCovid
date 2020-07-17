@@ -35,23 +35,6 @@ module.exports = {
   async select(request, response) {
     const casos = await connection("casos").select("*");
 
-    casos.forEach(async (caso, index) => {
-      const { local_id } = caso;
-      const [local] = await connection("locais")
-        .where("id", local_id)
-        .select("*");
-
-      var newC = {
-        id: caso.id,
-        nome_paciente: caso.nome_paciente,
-        data_ocorrido: caso.data_ocorrido,
-        hora_ocorrido: caso.hora_ocorrido,
-        local,
-        medico_id: caso.medico_id,
-      };
-      casos[index] = newC;
-    });
-
     setTimeout(() => {
       response.json(casos);
     }, 3000);
