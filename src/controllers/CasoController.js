@@ -9,7 +9,7 @@ module.exports = {
 
     const { rua, bairro, cidade, uf, latitude, longitude } = request.body;
 
-    const { local_id } = await connection("locais").insert({
+    const [local_id] = await connection("locais").insert({
       rua,
       bairro,
       cidade,
@@ -22,13 +22,13 @@ module.exports = {
       nome_paciente: "Luiz Carlos",
       data_ocorrido: "06/07/2020",
       hora_ocorrido: "15:00",
-      local_id: local_id,
+      local_id: 25,
       medico_id: 2
     });
 
     //console.log("Caso ID " + idCaso);
 
-    response.json({ msg: "ok" });
+    response.json({ msg: "ok", id: local_id });
   },
   async select(request, response) {
     const casos = await connection("casos").select("*");
