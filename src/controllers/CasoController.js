@@ -20,11 +20,11 @@ module.exports = {
 
     console.log("Local " + local_id);
 
-    const [idCaso] = await connection("casos").insert({
+    await connection("casos").insert({
       nome_paciente: "Luiz Carlos",
       data_ocorrido: "6/07/2020",
       hora_ocorrido: "15:00",
-      local_id,
+      local_id: 24,
       medico_id: 2
     });
 
