@@ -17,7 +17,7 @@ routes.get('/', (request, response) => {
 routes.post('/login', MedicoController.login);
 
 //Casos
-routes.post('/create_caso', authMiddleware, CasoController.create);
+routes.post('/create_caso', CasoController.create);
 routes.get('/casos', CasoController.select);
 
 routes.delete('/delete_caso/:id', CasoController.delete);
