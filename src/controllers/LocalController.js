@@ -15,7 +15,8 @@ module.exports = {
             uf, 
             latitude, 
             longitude
-        })
+        }).returning('*').toString();
+        
         return response.json({ id: local_id });
     }
 }
