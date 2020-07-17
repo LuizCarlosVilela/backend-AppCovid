@@ -9,8 +9,8 @@ exports.up = function (knex) {
         table.string("cidade").notNullable();
         table.string("uf", 2).notNullable();
 
-        table.decimal("latitude").notNullable();
-        table.decimal("longitude").notNullable();
+        table.float("latitude").notNullable();
+        table.float("longitude").notNullable();
     });
 };
 
