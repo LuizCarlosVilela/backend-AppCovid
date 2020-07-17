@@ -3,18 +3,18 @@ const connection = require("../database/connection");
 
 module.exports = {
   async create(request, response) {
-    //const { id } = request.body;
+    const { id } = request.body;
 
-    //const { nome_paciente, data_ocorrido, hora_ocorrido } = request.body;
+    const { nome_paciente, data_ocorrido, hora_ocorrido } = request.body;
 
     const { rua, bairro, cidade, uf, latitude, longitude } = request.body;
 
     await connection("casos").insert({
-      nome_paciente: "Luiz Carlos",
-      data_ocorrido: "06/07/2020",
-      hora_ocorrido: "15:00",
+      nome_paciente,
+      data_ocorrido,
+      hora_ocorrido,
       local_id: 25,
-      medico_id: 2
+      medico_id: id
     });
 
     //console.log("Caso ID " + idCaso);
