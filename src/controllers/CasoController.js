@@ -1,7 +1,5 @@
-const { create, select } = require("./MedicoController");
+
 const connection = require("../database/connection");
-const { connect } = require("../routes");
-const { update } = require("../database/connection");
 
 module.exports = {
   async create(request, response) {
@@ -58,6 +56,7 @@ module.exports = {
       response.json(casos);
     }, 3000);
   },
+  
   async delete(request, response) {
     const { id } = request.params;
 
