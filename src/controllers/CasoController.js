@@ -9,7 +9,7 @@ module.exports = {
 
     const { rua, bairro, cidade, uf, latitude, longitude } = request.body;
 
-    const [ local_id ] = await connection("locais").insert({
+    const { local_id } = await connection("locais").insert({
       rua,
       bairro,
       cidade,
