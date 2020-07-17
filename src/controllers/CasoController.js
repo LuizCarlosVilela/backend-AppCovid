@@ -7,22 +7,20 @@ module.exports = {
 
     //const { nome_paciente, data_ocorrido, hora_ocorrido } = request.body;
 
-    const { rua, bairro, cidade, uf, latitude, longitude } = request.body;
+    //const { rua, bairro, cidade, uf, latitude, longitude } = request.body;
 
-    const [local_id] = await connection("locais").insert({
-      rua,
-      bairro,
-      cidade,
-      uf,
-      latitude,
-      longitude,
-    });
-
-    console.log("Local " + local_id);
+    //const [local_id] = await connection("locais").insert({
+      //rua,
+      //bairro,
+      //cidade,
+      //uf,
+      //latitude,
+      //longitude,
+    //});
 
     await connection("casos").insert({
       nome_paciente: "Luiz Carlos",
-      data_ocorrido: "6/07/2020",
+      data_ocorrido: "06/07/2020",
       hora_ocorrido: "15:00",
       local_id: 24,
       medico_id: 2
