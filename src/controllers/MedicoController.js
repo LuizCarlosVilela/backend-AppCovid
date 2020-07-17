@@ -25,7 +25,7 @@ module.exports = {
 
         doctor[0].senha = undefined;
 
-        return response.json({ token, doctor });
+        return response.json({ token });
     },
 
     async login(request, response) {
