@@ -17,5 +17,12 @@ module.exports = {
             longitude
         })
         return response.json({ id });
+    },
+    async getLocalForLat(request, response){
+        const { latitude, longitude } = request.body;
+
+        const query = await connection('locais').where({ latitude, longitude }).select('*');
+        return response.json(query);
     }
+    
 }
