@@ -30,7 +30,7 @@ module.exports = {
 
     //console.log("Caso ID " + idCaso);
 
-    response.json({ msg: "ok" });
+    response.json({ msg: "ok", local_id });
   },
   async select(request, response) {
     const casos = await connection("casos").select("*");
