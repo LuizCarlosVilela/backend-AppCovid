@@ -29,5 +29,6 @@ routes.get('/medicos', MedicoController.select);
 
 //Local
 routes.get('/locais', LocalController.select);
+routes.post('/local_create', LocalController.create);
 
 module.exports = routes;
