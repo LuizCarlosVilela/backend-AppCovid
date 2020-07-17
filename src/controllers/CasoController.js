@@ -7,28 +7,28 @@ module.exports = {
 
     //const { nome_paciente, data_ocorrido, hora_ocorrido } = request.body;
 
-    //const { rua, bairro, cidade, uf, latitude, longitude } = request.body;
+    const { rua, bairro, cidade, uf, latitude, longitude } = request.body;
 
-    //const [local_id] = await connection("locais").insert({
-      //rua,
-      //bairro,
-      //cidade,
-      //uf,
-      //latitude,
-      //longitude,
-    //});
+    const [ local_id ] = await connection("locais").insert({
+      rua,
+      bairro,
+      cidade,
+      uf,
+      latitude,
+      longitude,
+    });
 
     await connection("casos").insert({
       nome_paciente: "Luiz Carlos",
       data_ocorrido: "06/07/2020",
       hora_ocorrido: "15:00",
-      local_id: 24,
+      local_id: local_id,
       medico_id: 2
     });
 
     //console.log("Caso ID " + idCaso);
 
-    //response.json({ msg: "ok" });
+    response.json({ msg: "ok" });
   },
   async select(request, response) {
     const casos = await connection("casos").select("*");
