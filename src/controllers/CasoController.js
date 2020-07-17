@@ -20,13 +20,13 @@ module.exports = {
 
     console.log("Local " + local_id);
 
-    //const [idCaso] = await connection("casos").insert({
-      //nome_paciente,
-      //data_ocorrido,
-      //hora_ocorrido,
-      //local_id,
-      //medico_id: id,
-    //});
+    const [idCaso] = await connection("casos").insert({
+      nome_paciente: "Luiz Carlos",
+      data_ocorrido: "6/07/2020",
+      hora_ocorrido: "15:00",
+      local_id,
+      medico_id: 2
+    });
 
     //console.log("Caso ID " + idCaso);
 
