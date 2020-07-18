@@ -18,7 +18,7 @@ module.exports = {
       longitude
     });
 
-    const [ local_id ] = await connection('locais').where({ latitude, longitude }).select('id');
+    const [ local_id ] = await connection('locais').where({ latitude, longitude, rua, bairro, cidade, uf }).select('id');
 
     await connection("casos").insert({
       nome_paciente,
