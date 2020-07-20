@@ -18,7 +18,7 @@ module.exports = {
       longitude
     });
 
-    const [ local_id ] = await connection('locais').where({ latitude, longitude, rua, bairro, cidade, uf }).select('id');
+    const [local_id] = await connection('locais').where({ latitude, longitude, rua, bairro, cidade, uf }).select('id');
 
     await connection("casos").insert({
       nome_paciente,
@@ -61,26 +61,49 @@ module.exports = {
 
     const casos = await connection("casos").select("*").orderBy('id', 'desc');
 
+    const locais = await connection("locais")
+      .where("id", local_id)
+      .where({ cidade, uf })
+      .select("*");
+
+    
+    var casosRetornar = [];
+
     casos.forEach(async (caso, index) => {
       const { local_id } = caso;
-      const [local] = await connection("locais")
-        .where("id", local_id)
-        .where({cidade, uf})
-        .select("*");
 
-      var newC = {
-        id: caso.id,
-        nome_paciente: caso.nome_paciente,
-        data_ocorrido: caso.data_ocorrido,
-        hora_ocorrido: caso.hora_ocorrido,
-        local,
-        medico_id: caso.medico_id,
-      };
-      casos[index] = newC;
+      var localCaso;
+
+      locais.forEach(async (local, index) => {
+        if (local_id == local.id) {
+          localCaso = {
+            id: local.id,
+
+            rua: local.rua,
+            bairro: local.bairro,
+            cidade: local.cidade,
+            uf: local.uf,
+
+            latitude: local.latitude,
+            longitude: local.longitude
+          }
+
+          var newC = {
+            id: caso.id,
+            nome_paciente: caso.nome_paciente,
+            data_ocorrido: caso.data_ocorrido,
+            hora_ocorrido: caso.hora_ocorrido,
+            localCaso,
+            medico_id: caso.medico_id,
+          };
+
+          casosRetornar.push(newC);
+        }
+      });
     });
 
     setTimeout(() => {
-      response.json(casos);
+      response.json(casosRetornar);
     }, 1000);
   },
 
