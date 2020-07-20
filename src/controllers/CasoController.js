@@ -33,7 +33,7 @@ module.exports = {
     response.json({ msg: "ok", local_id });
   },
   async select(request, response) {
-    const casos = await connection("casos").select("*").orderBy('id', 'desc');
+    const casos = await connection("casos").select("*").orderBy('data_ocorrido', 'desc');
 
     casos.forEach(async (caso, index) => {
       const { local_id } = caso;
