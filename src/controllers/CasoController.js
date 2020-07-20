@@ -59,12 +59,13 @@ module.exports = {
   async casosForCidade(request, response) {
     const { cidade, uf } = request.body;
 
-    const casos = await connection("casos").select("*").where({ cidade, uf }).orderBy('id', 'desc');
+    const casos = await connection("casos").select("*").orderBy('id', 'desc');
 
     casos.forEach(async (caso, index) => {
       const { local_id } = caso;
       const [local] = await connection("locais")
         .where("id", local_id)
+        .where({cidade, uf})
         .select("*");
 
       var newC = {
