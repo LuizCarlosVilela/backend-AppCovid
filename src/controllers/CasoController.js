@@ -70,20 +70,20 @@ module.exports = {
     casos.forEach(async (caso, index) => {
       const { local_id } = caso;
 
-      var localCaso;
+      var local;
 
-      locais.forEach(async (local, index) => {
-        if (local_id == local.id) {
-          localCaso = {
-            id: local.id,
+      locais.forEach(async (local1, index) => {
+        if (local_id == local1.id) {
+          local = {
+            id: local1.id,
 
-            rua: local.rua,
-            bairro: local.bairro,
-            cidade: local.cidade,
-            uf: local.uf,
+            rua: local1.rua,
+            bairro: local1.bairro,
+            cidade: local1.cidade,
+            uf: local1.uf,
 
-            latitude: local.latitude,
-            longitude: local.longitude
+            latitude: local1.latitude,
+            longitude: local1.longitude
           }
 
           var newC = {
@@ -91,7 +91,7 @@ module.exports = {
             nome_paciente: caso.nome_paciente,
             data_ocorrido: caso.data_ocorrido,
             hora_ocorrido: caso.hora_ocorrido,
-            localCaso,
+            local,
             medico_id: caso.medico_id,
           };
 
