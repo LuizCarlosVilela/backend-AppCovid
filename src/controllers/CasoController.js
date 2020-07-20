@@ -66,44 +66,9 @@ module.exports = {
       .where({ cidade, uf })
       .select("*");
 
-    
-    var casosRetornar = [];
-
-    casos.forEach(async (caso, index) => {
-      const { local_id } = caso;
-
-      var localCaso;
-
-      locais.forEach(async (local, index) => {
-        if (local_id == local.id) {
-          localCaso = {
-            id: local.id,
-
-            rua: local.rua,
-            bairro: local.bairro,
-            cidade: local.cidade,
-            uf: local.uf,
-
-            latitude: local.latitude,
-            longitude: local.longitude
-          }
-
-          var newC = {
-            id: caso.id,
-            nome_paciente: caso.nome_paciente,
-            data_ocorrido: caso.data_ocorrido,
-            hora_ocorrido: caso.hora_ocorrido,
-            localCaso,
-            medico_id: caso.medico_id,
-          };
-
-          casosRetornar.push(newC);
-        }
-      });
-    });
 
     setTimeout(() => {
-      response.json(casosRetornar);
+      response.json(locais);
     }, 1000);
   },
 
