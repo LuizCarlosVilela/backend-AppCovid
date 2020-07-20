@@ -62,7 +62,6 @@ module.exports = {
     const casos = await connection("casos").select("*").orderBy('id', 'desc');
 
     const locais = await connection("locais")
-      .where("id", local_id)
       .where({ cidade, uf })
       .select("*");
 
