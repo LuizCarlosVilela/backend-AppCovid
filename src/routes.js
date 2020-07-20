@@ -19,7 +19,7 @@ routes.post('/login', MedicoController.login);
 //Casos
 routes.post('/create_caso', authMiddleware, CasoController.create);
 routes.get('/casos', CasoController.select);
-routes.get('/casos_forCidade', CasoController.casosForCidade);
+routes.post('/casos_forCidade', CasoController.casosForCidade);
 
 
 routes.delete('/delete_caso/:id', CasoController.delete);
