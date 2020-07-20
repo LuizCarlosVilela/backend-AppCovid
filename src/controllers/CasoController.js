@@ -56,6 +56,32 @@ module.exports = {
       response.json(casos);
     }, 2000);
   },
+  async casosForCidade(request, response) {
+    const { cidade, uf } = request.body;
+
+    const casos = await connection("casos").select("*").where({ cidade, uf }).orderBy('id', 'desc');
+
+    casos.forEach(async (caso, index) => {
+      const { local_id } = caso;
+      const [local] = await connection("locais")
+        .where("id", local_id)
+        .select("*");
+
+      var newC = {
+        id: caso.id,
+        nome_paciente: caso.nome_paciente,
+        data_ocorrido: caso.data_ocorrido,
+        hora_ocorrido: caso.hora_ocorrido,
+        local,
+        medico_id: caso.medico_id,
+      };
+      casos[index] = newC;
+    });
+
+    setTimeout(() => {
+      response.json(casos);
+    }, 1000);
+  },
 
   async delete(request, response) {
     const { id } = request.params;
