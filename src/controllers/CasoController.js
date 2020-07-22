@@ -54,7 +54,7 @@ module.exports = {
 
     setTimeout(() => {
       response.json(casos);
-    }, 2000);
+    }, 1000);
   },
   async casosForCidade(request, response) {
     const { cidade, uf } = request.body;
